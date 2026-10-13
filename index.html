@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Method Commons</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20width='32'%20height='32'%20rx='7'%20fill='%234f46e5'/%3E%3Crect%20x='6'%20y='6'%20width='9'%20height='9'%20rx='2'%20fill='%23fff'/%3E%3Crect%20x='17'%20y='6'%20width='9'%20height='9'%20rx='2'%20fill='%23fff'%20opacity='.4'/%3E%3Crect%20x='6'%20y='17'%20width='9'%20height='9'%20rx='2'%20fill='%23fff'%20opacity='.4'/%3E%3Cpath%20d='M18.2%2021.6l2.4%202.4%204.6-5'%20fill='none'%20stroke='%23fb923c'%20stroke-width='2.4'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E">
+<meta name="description" content="Method Commons: erprobte Methoden aus dem erweiterten Projektmanagement – je Methode eine Kurzschulung und eine passende, kostenlose Web-App. Inhalte und Code sind KI-generiert.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f7f6f2;
+    --surface: #ffffff;
+    --surface-2: #efede6;
+    --text: #1d1d1b;
+    --muted: #5d5c57;
+    --line: #dcd9cf;
+    --accent: #2f5bd3;
+    --logo: #4f46e5;
+    --accent-soft: #e3eafc;
+    --accent-text: #ffffff;
+    --orange: #ea7a2a;
+    --shadow: 0 1px 2px rgba(0,0,0,.04), 0 6px 24px rgba(0,0,0,.06);
+    --radius: 14px;
+    --maxw: 1080px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #141413;
+      --surface: #1d1d1b;
+      --surface-2: #262623;
+      --text: #ecebe6;
+      --muted: #a3a29b;
+      --line: #36352f;
+      --accent: #7c9cf5;
+      --logo: #8b8cf8;
+      --accent-soft: #23305a;
+      --accent-text: #0f1424;
+      --orange: #f2a46f;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 6px 24px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #141413;
+    --surface: #1d1d1b;
+    --surface-2: #262623;
+    --text: #ecebe6;
+    --muted: #a3a29b;
+    --line: #36352f;
+    --accent: #7c9cf5;
+    --logo: #8b8cf8;
+    --accent-soft: #23305a;
+    --accent-text: #0f1424;
+    --orange: #f2a46f;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 6px 24px rgba(0,0,0,.35);
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 16px/1.6 Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 { font-family: Fraunces, Georgia, serif; line-height: 1.2; margin: 0 0 .5em; }
+  h1 { font-size: clamp(2.2rem, 5vw, 3.6rem); letter-spacing: -.01em; }
+  h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); }
+  h3 { font-size: 1.15rem; font-family: Inter, sans-serif; font-weight: 600; }
+  p { margin: 0 0 1em; }
+  a { color: var(--accent); }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 16px; }
+  section { padding: 72px 0; border-top: 1px solid var(--line); }
+  .eyebrow { text-transform: uppercase; letter-spacing: .12em; font-size: .75rem; font-weight: 600; color: var(--accent); margin-bottom: .75em; display: block; }
+  .lead { font-size: 1.15rem; color: var(--muted); max-width: 62ch; }
+  .muted { color: var(--muted); }
+
+  /* Navigation */
+  nav.top {
+    position: sticky; top: 0; z-index: 10;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav.top .wrap { display: flex; align-items: center; gap: 24px; height: 60px; }
+  .brand { font-weight: 700; text-decoration: none; color: var(--text); display: flex; gap: 10px; align-items: center; white-space: nowrap; }
+  .logo {
+    width: 28px; height: 28px; flex-shrink: 0; color: var(--logo);
+    filter: drop-shadow(0 2px 4px color-mix(in srgb, var(--logo) 35%, transparent));
+  }
+  nav.top ul { list-style: none; margin: 0 0 0 auto; padding: 0; display: flex; gap: 18px; font-size: .9rem; }
+  nav.top ul a { color: var(--muted); text-decoration: none; }
+  nav.top ul a:hover { color: var(--text); }
+  .theme-toggle {
+    background: none; border: 1px solid var(--line); color: var(--text);
+    width: 34px; height: 34px; border-radius: 999px; cursor: pointer;
+    display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  @media (max-width: 640px) {
+    nav.top ul { display: none; }
+    nav.top .wrap { justify-content: space-between; }
+  }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 12px 20px; border-radius: 999px; font-weight: 600; font-size: .95rem;
+    text-decoration: none; border: 1px solid transparent; transition: transform .1s, background .15s;
+  }
+  .btn:hover { transform: translateY(-1px); }
+  .btn-primary { background: var(--accent); color: var(--accent-text); }
+  .btn-ghost { border-color: var(--line); color: var(--text); background: var(--surface); }
+  .btn-sm { padding: 8px 14px; font-size: .85rem; }
+  .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+
+  /* Hero */
+  .hero { padding: 80px 0 72px; }
+  .hero-grid { display: grid; grid-template-columns: 1.25fr 1fr; gap: 48px; align-items: center; }
+  .hero-box { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); padding: 24px; }
+  .hero-box ol { margin: 0; padding: 0; list-style: none; counter-reset: s; }
+  .hero-box li { counter-increment: s; display: grid; grid-template-columns: 34px 1fr; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+  .hero-box li:last-child { border-bottom: 0; }
+  .hero-box li::before {
+    content: counter(s); width: 34px; height: 34px; border-radius: 999px;
+    background: var(--accent-soft); color: var(--accent); font-weight: 700;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .hero-box b { display: block; }
+  .hero-box span { color: var(--muted); font-size: .9rem; }
+  @media (max-width: 860px) { .hero-grid { grid-template-columns: 1fr; gap: 32px; } .hero { padding: 48px 0; } }
+
+  /* Grids & cards */
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 32px; }
+  @media (max-width: 860px) { .grid-3 { grid-template-columns: 1fr; } }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow); }
+  .card h3 { margin-bottom: .4em; }
+  .card p:last-child { margin-bottom: 0; }
+  .icon { width: 40px; height: 40px; border-radius: 10px; background: var(--accent-soft); color: var(--accent); display: inline-flex; align-items: center; justify-content: center; margin-bottom: 14px; }
+
+  /* Projects */
+  .project { display: grid; grid-template-columns: 1fr 1.1fr; gap: 0; margin-top: 32px; padding: 0; overflow: hidden; }
+  .project + .project { margin-top: 24px; }
+  .project .intro { padding: 32px; border-right: 1px solid var(--line); }
+  .project .detail { padding: 32px; background: var(--surface-2); }
+  .project-head { display: flex; gap: 14px; align-items: center; margin-bottom: 16px; }
+  .project-head .logo { width: 44px; height: 44px; }
+  .project-head h3 { font-family: Fraunces, Georgia, serif; font-size: 1.5rem; margin: 0; }
+  .project-head small { display: block; color: var(--muted); font-size: .85rem; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 16px; padding: 0; list-style: none; }
+  .tags li { font-size: .78rem; font-weight: 600; padding: 4px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); }
+  .detail h4 { font-size: .8rem; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin: 0 0 10px; }
+  .detail ul.feat { margin: 0 0 22px; padding-left: 1.1em; }
+  .detail ul.feat li { margin-bottom: 6px; }
+  .links { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .link-card {
+    display: block; text-decoration: none; color: var(--text);
+    background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px;
+  }
+  .link-card:hover { border-color: var(--accent); }
+  .link-card b { display: block; font-size: .95rem; }
+  .link-card span { font-size: .8rem; color: var(--muted); }
+  @media (max-width: 860px) {
+    .project { grid-template-columns: 1fr; }
+    .project .intro { border-right: 0; border-bottom: 1px solid var(--line); }
+    .project .intro, .project .detail { padding: 24px; }
+  }
+  @media (max-width: 420px) { .links { grid-template-columns: 1fr; } }
+
+  /* KI note */
+  .note { display: grid; grid-template-columns: auto 1fr; gap: 20px; align-items: start; }
+  .note .icon { margin: 0; background: color-mix(in srgb, var(--orange) 18%, transparent); color: var(--orange); }
+  @media (max-width: 560px) { .note { grid-template-columns: 1fr; } }
+
+  footer.site { padding: 40px 0 56px; color: var(--muted); font-size: .85rem; border-top: 1px solid var(--line); }
+  footer.site .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+</style>
+</head>
+<body>
+
+<nav class="top" aria-label="Hauptnavigation">
+  <div class="wrap">
+    <a class="brand" href="#top">
+      <svg class="logo" viewBox="0 0 32 32" aria-hidden="true">
+        <rect width="32" height="32" rx="7" fill="currentColor"/>
+        <rect x="6" y="6" width="9" height="9" rx="2" fill="#fff"/>
+        <rect x="17" y="6" width="9" height="9" rx="2" fill="#fff" opacity=".4"/>
+        <rect x="6" y="17" width="9" height="9" rx="2" fill="#fff" opacity=".4"/>
+        <path d="M18.2 21.6l2.4 2.4 4.6-5" fill="none" stroke="#fb923c" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span>Method Commons</span>
+    </a>
+    <ul>
+      <li><a href="#idee">Idee</a></li>
+      <li><a href="#projekte">Methoden</a></li>
+      <li><a href="#ki">Entstehung</a></li>
+    </ul>
+    <button class="theme-toggle" id="themeToggle" aria-label="Hell/Dunkel umschalten" title="Hell/Dunkel umschalten"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg></button>
+  </div>
+</nav>
+
+<main id="top">
+
+  <header class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">Offene Methodensammlung · Projektmanagement &amp; Produktentwicklung</span>
+        <h1>Erprobte Methoden, leicht zugänglich</h1>
+        <p class="lead">Method Commons bringt bewährte Methoden aus dem erweiterten Umfeld des Projektmanagements zu den Menschen, die sie brauchen. Zu jeder Methode gibt es eine kurze Schulung und eine passende Web-App, mit der du sofort loslegen kannst. Alles ist kostenlos, quelloffen und läuft direkt im Browser.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="#projekte">Methoden ansehen ↓</a>
+          <a class="btn btn-ghost" href="https://github.com/method-commons" target="_blank" rel="noopener">Auf GitHub ↗</a>
+        </div>
+      </div>
+      <div class="hero-box">
+        <ol>
+          <li><div><b>Verstehen</b><span>Eine Kurzschulung als One-Pager erklärt die Methode in etwa 15–20 Minuten, mit Beispiel und Quiz.</span></div></li>
+          <li><div><b>Ausprobieren</b><span>Interaktive Übungen auf der Seite zeigen, wie die Methode in der Praxis funktioniert.</span></div></li>
+          <li><div><b>Anwenden</b><span>Die passende App unterstützt beim eigenen Vorhaben, ganz ohne Anmeldung und ohne Server.</span></div></li>
+        </ol>
+      </div>
+    </div>
+  </header>
+
+  <section id="idee">
+    <div class="wrap">
+      <span class="eyebrow">Die Idee</span>
+      <h2>Methoden statt Werkzeugdschungel</h2>
+      <p class="lead">Viele gute Methoden sind seit Jahrzehnten bekannt, werden im Alltag aber selten genutzt. Sie wirken theoretisch, oder es fehlt ein einfaches Werkzeug dafür. Hier setzt Method Commons an.</p>
+      <div class="grid-3">
+        <div class="card">
+          <div class="icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5V5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M8 7h7M8 11h5"/></svg></div>
+          <h3>Kurz erklärt</h3>
+          <p class="muted">Kompakte Schulungsseiten mit Grundidee, Vorgehen, Beispielen, typischen Fehlern und einem Wissenscheck.</p>
+        </div>
+        <div class="card">
+          <div class="icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg></div>
+          <h3>Direkt nutzbar</h3>
+          <p class="muted">Eigenständige Web-Apps, die die Methode Schritt für Schritt unterstützen. Die Daten bleiben lokal im Browser, Export als JSON, CSV, Markdown oder PDF.</p>
+        </div>
+        <div class="card">
+          <div class="icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></div>
+          <h3>Offen für alle</h3>
+          <p class="muted">Kostenlos, ohne Konto und mit offenem Quellcode auf GitHub. Oberflächen auf Deutsch und Englisch, hell und dunkel, auch mobil.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projekte">
+    <div class="wrap">
+      <span class="eyebrow">Aktuelle Methoden</span>
+      <h2>Zwei Methoden, je eine Schulung und eine App</h2>
+      <p class="lead">Jede Methode besteht aus zwei Repositorys: einer Kurzschulung (<code>*-site</code>) und einer App (<code>*-app</code>). Weitere Methoden sollen folgen.</p>
+
+      <article class="card project">
+        <div class="intro">
+          <div class="project-head">
+            <svg class="logo" viewBox="0 0 32 32" aria-hidden="true">
+              <rect width="32" height="32" rx="7" fill="currentColor"/>
+              <g fill="#fff" opacity=".32"><rect x="13.3" y="5.5" width="5.6" height="5.6" rx="1.5"/><rect x="21.1" y="5.5" width="5.6" height="5.6" rx="1.5"/><rect x="5.5" y="13.3" width="5.6" height="5.6" rx="1.5"/><rect x="13.3" y="13.3" width="5.6" height="5.6" rx="1.5"/><rect x="5.5" y="21.1" width="5.6" height="5.6" rx="1.5"/><rect x="21.1" y="21.1" width="5.6" height="5.6" rx="1.5"/></g>
+              <g fill="#fff"><rect x="5.5" y="5.5" width="5.6" height="5.6" rx="1.5"/><rect x="21.1" y="13.3" width="5.6" height="5.6" rx="1.5"/><rect x="13.3" y="21.1" width="5.6" height="5.6" rx="1.5"/></g>
+              <path d="M8.3 11.1C8.3 12.2 23.9 12.2 23.9 13.3M23.9 18.9C23.9 20 16.1 20 16.1 21.1" fill="none" stroke="#fb923c" stroke-width="1.6" stroke-linecap="round"/>
+            </svg>
+            <div>
+              <h3>Morphologischer Kasten</h3>
+              <small>Zwicky-Box · Methode nach Fritz Zwicky</small>
+            </div>
+          </div>
+          <ul class="tags"><li>Kreativität</li><li>Lösungsfindung</li><li>Entscheidung</li></ul>
+          <p>Ein Problem wird in unabhängige <b>Parameter</b> zerlegt, und für jeden Parameter werden mögliche <b>Ausprägungen</b> gesammelt. Aus der Kombination von je einer Ausprägung pro Zeile entstehen systematisch neue <b>Lösungskonzepte</b>, auch solche, an die man spontan nicht gedacht hätte.</p>
+          <p class="muted">Eignet sich für Produktentwicklung, Konzeptphasen, Eventplanung und kreative Aufgaben, also überall dort, wo nicht nur <em>eine</em>, sondern die <em>beste</em> Lösung aus vielen gesucht ist.</p>
+        </div>
+        <div class="detail">
+          <h4>Die App kann unter anderem</h4>
+          <ul class="feat">
+            <li>Matrix bearbeiten, Konzepte farbig kombinieren und vergleichen</li>
+            <li>Verträglichkeiten zwischen Ausprägungen prüfen (Konsistenzanalyse)</li>
+            <li>Bewertung nach Kosten, Nutzwert, MoSCoW und eigenen Merkmalen</li>
+            <li>Automatische Konzepte, Lösungsraum und Pareto-Front</li>
+            <li>Export als HTML-/Markdown-Bericht, CSV oder per Teilen-Link</li>
+          </ul>
+          <div class="links">
+            <a class="link-card" href="https://method-commons.github.io/morphological-matrix-site/" target="_blank" rel="noopener"><b>Kurzschulung ↗</b><span>Methode in ~15 Minuten</span></a>
+            <a class="link-card" href="https://method-commons.github.io/morphological-matrix-app/" target="_blank" rel="noopener"><b>App öffnen ↗</b><span>Morphologische Matrix</span></a>
+            <a class="link-card" href="https://github.com/method-commons/morphological-matrix-site" target="_blank" rel="noopener"><b>morphological-matrix-site</b><span>Quellcode der Schulung</span></a>
+            <a class="link-card" href="https://github.com/method-commons/morphological-matrix-app" target="_blank" rel="noopener"><b>morphological-matrix-app</b><span>Quellcode der App</span></a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card project">
+        <div class="intro">
+          <div class="project-head">
+            <svg class="logo" viewBox="0 0 32 32" aria-hidden="true">
+              <rect width="32" height="32" rx="7" fill="currentColor"/>
+              <rect x="6" y="7.5" width="20" height="15" rx="2.5" fill="#fff"/>
+              <rect x="9.5" y="11.5" width="13" height="2" rx="1" fill="currentColor" opacity=".4"/>
+              <rect x="9.5" y="15.5" width="8" height="2" rx="1" fill="currentColor" opacity=".4"/>
+              <path d="M18.5 23.5l2.6 2.6 5-5.4" fill="none" stroke="#fb923c" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <div>
+              <h3>User Stories</h3>
+              <small>Agile Anforderungen · nach Mike Cohn, Ron Jeffries und Bill Wake</small>
+            </div>
+          </div>
+          <ul class="tags"><li>Anforderungen</li><li>Agil</li><li>Backlog</li></ul>
+          <p>Anforderungen werden aus Sicht der Menschen beschrieben, die sie brauchen: <em>„Als … möchte ich …, damit …“</em>. Dazu gehören die <b>3Cs</b> (Card, Conversation, Confirmation), die <b>INVEST</b>-Regel, klare <b>Akzeptanzkriterien</b> sowie eine <b>Definition of Ready</b> und eine <b>Definition of Done</b>.</p>
+          <p class="muted">Die Schulung enthält eine interaktive Story-Werkstatt, in der du eigene Stories nach den INVEST-Regeln prüfen kannst.</p>
+        </div>
+        <div class="detail">
+          <h4>Die App kann unter anderem</h4>
+          <ul class="feat">
+            <li>Mehrere Projekte mit Backlog, Epics und Schnelleingabe im Standardformat</li>
+            <li>Story-Editor mit den 3Cs, Tipps und Akzeptanzkriterien (Gegeben/Wenn/Dann)</li>
+            <li>Automatischer INVEST-Check und Prüfung von Ready und Done</li>
+            <li>Board von „Entwurf“ bis „Fertig“, Aufteilen zu großer Stories nach Mustern</li>
+            <li>Bericht zum Drucken oder als Markdown; bewusst ohne Sprints, Velocity oder Zeiterfassung</li>
+          </ul>
+          <div class="links">
+            <a class="link-card" href="https://method-commons.github.io/user-story-site/" target="_blank" rel="noopener"><b>Kurzschulung ↗</b><span>Methode in ~20 Minuten</span></a>
+            <a class="link-card" href="https://method-commons.github.io/user-story-app/" target="_blank" rel="noopener"><b>App öffnen ↗</b><span>User-Story-App</span></a>
+            <a class="link-card" href="https://github.com/method-commons/user-story-site" target="_blank" rel="noopener"><b>user-story-site</b><span>Quellcode der Schulung</span></a>
+            <a class="link-card" href="https://github.com/method-commons/user-story-app" target="_blank" rel="noopener"><b>user-story-app</b><span>Quellcode der App</span></a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="ki">
+    <div class="wrap">
+      <div class="card note">
+        <div class="icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg></div>
+        <div>
+          <span class="eyebrow">Transparenz</span>
+          <h2>Mit KI entstanden</h2>
+          <p>Alle Inhalte dieser Organisation sind <b>KI-generiert</b>: die Texte der Schulungen ebenso wie der Code der Apps und diese Seite. Sie sind durch <b>Vibe-Coding</b> entstanden, also im Dialog mit einem KI-Assistenten (Claude Code). Ein Mensch hat dabei Ziele, Richtung und Prüfung vorgegeben.</p>
+          <p class="muted">Die Apps werden mit Lint, Typprüfung, Unit- und Browser-Tests automatisch geprüft. Trotzdem können Fehler oder Ungenauigkeiten vorkommen. Hinweise und Verbesserungen sind auf GitHub jederzeit willkommen.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <span>Method Commons · <a href="https://github.com/method-commons" target="_blank" rel="noopener">github.com/method-commons</a></span>
+    <span>Inhalte und Code KI-generiert · Beispiele fiktiv</span>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var root = document.documentElement;
+    try { var saved = localStorage.getItem('mc-theme'); if (saved) root.dataset.theme = saved; } catch (e) {}
+    document.getElementById('themeToggle').addEventListener('click', function () {
+      var dark = root.dataset.theme
+        ? root.dataset.theme === 'dark'
+        : matchMedia('(prefers-color-scheme: dark)').matches;
+      root.dataset.theme = dark ? 'light' : 'dark';
+      try { localStorage.setItem('mc-theme', root.dataset.theme); } catch (e) {}
+    });
+  })();
+</script>
+</body>
+</html>
