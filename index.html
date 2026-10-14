@@ -99,10 +99,22 @@
     width: 34px; height: 34px; border-radius: 999px; cursor: pointer;
     display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
   }
-  @media (max-width: 640px) {
-    nav.top ul { display: none; }
-    nav.top .wrap { justify-content: space-between; }
+  .menu-toggle { display: none; background: none; border: 1px solid var(--line); color: var(--text); border-radius: 999px; height: 34px; padding: 0 14px; font: 600 .85rem Inter, sans-serif; cursor: pointer; align-items: center; gap: 6px; }
+  @media (max-width: 960px) {
+    nav.top .wrap { gap: 10px; }
+    .theme-toggle { margin-left: auto; }
+    .menu-toggle { display: inline-flex; }
+    nav.top ul {
+      display: none; position: absolute; left: 0; right: 0; top: 60px;
+      flex-direction: column; gap: 0; margin: 0; padding: 8px 16px 16px;
+      background: var(--bg); border-bottom: 1px solid var(--line); box-shadow: var(--shadow);
+      max-height: calc(100vh - 60px); overflow-y: auto;
+    }
+    nav.top.open ul { display: flex; }
+    nav.top ul a { display: block; padding: 12px 4px; font-size: 1rem; border-bottom: 1px solid var(--line); }
+    nav.top ul li:last-child a { border-bottom: 0; }
   }
+  @media (max-width: 370px) { .menu-label { display: none; } .menu-toggle { padding: 0 11px; } .brand { gap: 8px; } }
 
   /* Buttons */
   .btn {
@@ -192,12 +204,15 @@
       </svg>
       <span>Method Commons</span>
     </a>
-    <ul>
+    <ul id="navMenu">
       <li><a href="#idee">Idee</a></li>
-      <li><a href="#projekte">Methoden</a></li>
+      <li><a href="#morphologischer-kasten">Morphologischer Kasten</a></li>
+      <li><a href="#user-stories">User Stories</a></li>
+      <li><a href="#5-why">5 Why</a></li>
       <li><a href="#ki">Entstehung</a></li>
     </ul>
     <button class="theme-toggle" id="themeToggle" aria-label="Hell/Dunkel umschalten" title="Hell/Dunkel umschalten"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg></button>
+    <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="navMenu" aria-label="Menü öffnen"><span aria-hidden="true">☰</span> <span class="menu-label">Menü</span></button>
   </div>
 </nav>
 
@@ -255,7 +270,7 @@
       <h2>Drei Methoden, je eine Schulung und eine App</h2>
       <p class="lead">Jede Methode besteht aus zwei Repositorys: einer Kurzschulung (<code>*-site</code>) und einer App (<code>*-app</code>). Weitere Methoden sollen folgen.</p>
 
-      <article class="card project">
+      <article class="card project" id="morphologischer-kasten">
         <div class="intro">
           <div class="project-head">
             <svg class="logo" viewBox="0 0 32 32" aria-hidden="true">
@@ -291,7 +306,7 @@
         </div>
       </article>
 
-      <article class="card project">
+      <article class="card project" id="user-stories">
         <div class="intro">
           <div class="project-head">
             <svg class="logo" viewBox="0 0 32 32" aria-hidden="true">
@@ -327,7 +342,7 @@
           </div>
         </div>
       </article>
-      <article class="card project">
+      <article class="card project" id="5-why">
         <div class="intro">
           <div class="project-head">
             <svg class="logo" viewBox="0 0 32 32" aria-hidden="true">
@@ -399,6 +414,23 @@
       root.dataset.theme = dark ? 'light' : 'dark';
       try { localStorage.setItem('mc-theme', root.dataset.theme); } catch (e) {}
     });
+  })();
+
+  // Mobile menu
+  (function () {
+    var nav = document.querySelector('nav.top');
+    var btn = document.getElementById('menuToggle');
+    var set = function (open) {
+      nav.classList.toggle('open', open);
+      btn.setAttribute('aria-expanded', open);
+      btn.setAttribute('aria-label', open ? 'Menü schließen' : 'Menü öffnen');
+      btn.innerHTML = open
+        ? '<span aria-hidden="true">✕</span> <span class="menu-label">Schließen</span>'
+        : '<span aria-hidden="true">☰</span> <span class="menu-label">Menü</span>';
+    };
+    btn.addEventListener('click', function () { set(!nav.classList.contains('open')); });
+    nav.querySelectorAll('ul a').forEach(function (a) { a.addEventListener('click', function () { set(false); }); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') set(false); });
   })();
 </script>
 </body>
