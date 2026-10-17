@@ -1,0 +1,50 @@
+<!-- ===== Method Commons: Verweis auf die Übersichtsseite =====
+     Einbau: die Regeln aus dem style-Block an das Ende des vorhandenen Stylesheets anhängen,
+     den aside-Block direkt vor dem schließenden main-Tag einfügen (nach dem CTA-Abschnitt).
+     Nutzt nur die vorhandenen Tokens der Schulungsseiten (--surface, --line, --muted, --accent, --logo, --radius, --shadow). -->
+
+<style>
+  .mc-link { padding: 0 0 72px; }
+  .mc-card {
+    display: grid; grid-template-columns: auto 1fr auto; gap: 18px; align-items: center;
+    padding: 22px 24px; border-radius: var(--radius);
+    background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow);
+    color: var(--text); text-decoration: none; transition: border-color .15s, transform .1s;
+  }
+  .mc-card:hover { border-color: var(--accent); transform: translateY(-1px); }
+  .mc-card:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .mc-logo { width: 40px; height: 40px; color: var(--logo); flex-shrink: 0; }
+  .mc-kicker { display: block; text-transform: uppercase; letter-spacing: .12em; font-size: .72rem; font-weight: 600; color: var(--accent); }
+  .mc-title { display: block; font-family: Fraunces, Georgia, serif; font-size: 1.3rem; line-height: 1.25; margin: 2px 0 4px; }
+  .mc-desc { display: block; color: var(--muted); font-size: .92rem; }
+  .mc-go {
+    display: inline-flex; align-items: center; gap: 6px; white-space: nowrap;
+    font-weight: 600; font-size: .9rem; color: var(--accent);
+    padding: 9px 16px; border: 1px solid var(--line); border-radius: 999px;
+  }
+  @media (max-width: 640px) {
+    .mc-card { grid-template-columns: auto 1fr; align-items: start; padding: 20px; gap: 14px; }
+    .mc-logo { width: 32px; height: 32px; margin-top: 2px; }
+    .mc-go { grid-column: 1 / -1; justify-content: center; }
+  }
+</style>
+
+<aside class="mc-link" aria-label="Weitere Methoden">
+  <div class="wrap">
+    <a class="mc-card" href="https://method-commons.github.io/">
+      <svg class="mc-logo" viewBox="0 0 32 32" aria-hidden="true">
+        <rect width="32" height="32" rx="7" fill="currentColor"/>
+        <rect x="6" y="6" width="9" height="9" rx="2" fill="#fff"/>
+        <rect x="17" y="6" width="9" height="9" rx="2" fill="#fff" opacity=".4"/>
+        <rect x="6" y="17" width="9" height="9" rx="2" fill="#fff" opacity=".4"/>
+        <path d="M18.2 21.6l2.4 2.4 4.6-5" fill="none" stroke="#fb923c" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span>
+        <span class="mc-kicker">Teil von Method Commons</span>
+        <span class="mc-title">Weitere Methoden entdecken</span>
+        <span class="mc-desc">Diese Kurzschulung ist Teil einer offenen Sammlung erprobter Methoden aus dem erweiterten Umfeld des Projektmanagements – jede mit Kurzschulung und kostenloser App.</span>
+      </span>
+      <span class="mc-go">Zur Übersicht <span aria-hidden="true">→</span></span>
+    </a>
+  </div>
+</aside>
