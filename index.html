@@ -100,7 +100,7 @@
     display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
   }
   .menu-toggle { display: none; background: none; border: 1px solid var(--line); color: var(--text); border-radius: 999px; height: 34px; padding: 0 14px; font: 600 .85rem Inter, sans-serif; cursor: pointer; align-items: center; gap: 6px; }
-  @media (max-width: 960px) {
+  @media (max-width: 1040px) {
     nav.top .wrap { gap: 10px; }
     .theme-toggle { margin-left: auto; }
     .menu-toggle { display: inline-flex; }
@@ -210,6 +210,7 @@
       <li><a href="#user-stories">User Stories</a></li>
       <li><a href="#5-why">5 Why</a></li>
       <li><a href="#2-achsen-matrix">2-Achsen-Matrix</a></li>
+      <li><a href="#raci-matrix">RACI-Matrix</a></li>
       <li><a href="#ki">Entstehung</a></li>
     </ul>
     <button class="theme-toggle" id="themeToggle" aria-label="Hell/Dunkel umschalten" title="Hell/Dunkel umschalten"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg></button>
@@ -268,7 +269,7 @@
   <section id="projekte">
     <div class="wrap">
       <span class="eyebrow">Aktuelle Methoden</span>
-      <h2>Vier Methoden, je eine Schulung und eine App</h2>
+      <h2>Fünf Methoden, je eine Schulung und eine App</h2>
       <p class="lead">Jede Methode besteht aus zwei Repositorys: einer Kurzschulung (<code>*-site</code>) und einer App (<code>*-app</code>). Weitere Methoden sollen folgen.</p>
 
       <article class="card project" id="morphologischer-kasten">
@@ -412,6 +413,50 @@
             <a class="link-card" href="https://method-commons.github.io/two-axis-matrix-app/" target="_blank" rel="noopener"><b>App öffnen ↗</b><span>2-Achsen-Matrix</span></a>
             <a class="link-card" href="https://github.com/method-commons/two-axis-matrix-site" target="_blank" rel="noopener"><b>two-axis-matrix-site</b><span>Quellcode der Schulung</span></a>
             <a class="link-card" href="https://github.com/method-commons/two-axis-matrix-app" target="_blank" rel="noopener"><b>two-axis-matrix-app</b><span>Quellcode der App</span></a>
+          </div>
+        </div>
+      </article>
+      <article class="card project" id="raci-matrix">
+        <div class="intro">
+          <div class="project-head">
+            <svg class="logo" viewBox="0 0 32 32" aria-hidden="true">
+              <rect width="32" height="32" rx="7" fill="currentColor"/>
+              <rect x="5.5" y="7.6" width="8" height="4.4" rx="2.2" fill="#fff" opacity=".85"/>
+              <rect x="15.6" y="7.6" width="3.3" height="4.4" rx="1" fill="#fff" opacity=".5"/>
+              <rect x="19.7" y="7.6" width="3.3" height="4.4" rx="1" fill="#fff"/>
+              <rect x="23.8" y="7.6" width="3.3" height="4.4" rx="1" fill="#fff" opacity=".2"/>
+              <rect x="5.5" y="14" width="8" height="4.4" rx="2.2" fill="#fff" opacity=".85"/>
+              <rect x="15.6" y="14" width="3.3" height="4.4" rx="1" fill="#fff"/>
+              <rect x="19.7" y="14" width="3.3" height="4.4" rx="1" fill="#fb923c"/>
+              <rect x="23.8" y="14" width="3.3" height="4.4" rx="1" fill="#fff" opacity=".5"/>
+              <rect x="5.5" y="20.4" width="8" height="4.4" rx="2.2" fill="#fff" opacity=".85"/>
+              <rect x="15.6" y="20.4" width="3.3" height="4.4" rx="1" fill="#fff" opacity=".2"/>
+              <rect x="19.7" y="20.4" width="3.3" height="4.4" rx="1" fill="#fff" opacity=".5"/>
+              <rect x="23.8" y="20.4" width="3.3" height="4.4" rx="1" fill="#fff"/>
+            </svg>
+            <div>
+              <h3>RACI-Matrix</h3>
+              <small>Zuständigkeiten klären · Verantwortungsmatrix aus dem Projektmanagement, Varianten RASCI, RACI-VS und DACI</small>
+            </div>
+          </div>
+          <ul class="tags"><li>Zuständigkeiten</li><li>Rollen</li><li>Organisation</li></ul>
+          <p>Aufgaben stehen in den Zeilen, Rollen in den Spalten, und jede Zelle sagt, wer ausführt (<b>R</b>esponsible), wer entscheidet (<b>A</b>ccountable), wer gefragt (<b>C</b>onsulted) und wer informiert wird (<b>I</b>nformed). Geprüft wird <b>waagerecht</b> je Aufgabe (genau ein A, mindestens ein R) und <b>senkrecht</b> je Rolle (Engpässe, Rollen ohne Aufgabe).</p>
+          <p class="muted">Eignet sich für Projekte, Veranstaltungen, wiederkehrende Abläufe und Umorganisationen, also überall dort, wo unklar ist, wer am Ende entscheidet. Die Schulung enthält eine interaktive Matrix-Werkstatt.</p>
+        </div>
+        <div class="detail">
+          <h4>Die App kann unter anderem</h4>
+          <ul class="feat">
+            <li>Varianten RACI, RASCI, RACI-VS, DACI und eigene Buchstaben, Vorlagen und Phasen</li>
+            <li>Buchstaben per Klick oder Tastatur setzen, auch „A/R“, mit „klären“ und Notizen je Zelle</li>
+            <li>Prüfung je Aufgabe und je Rolle mit Vorschlägen zum Entlasten</li>
+            <li>Ist und Soll je Zelle mit Vergleichsansicht für Umorganisationen</li>
+            <li>„Wer macht was?“ als Steckbrief je Rolle oder Person, Bericht als PDF, Markdown, CSV oder JSON</li>
+          </ul>
+          <div class="links">
+            <a class="link-card" href="https://method-commons.github.io/raci-site/" target="_blank" rel="noopener"><b>Kurzschulung ↗</b><span>Methode in ~20 Minuten</span></a>
+            <a class="link-card" href="https://method-commons.github.io/raci-app/" target="_blank" rel="noopener"><b>App öffnen ↗</b><span>RACI-Matrix</span></a>
+            <a class="link-card" href="https://github.com/method-commons/raci-site" target="_blank" rel="noopener"><b>raci-site</b><span>Quellcode der Schulung</span></a>
+            <a class="link-card" href="https://github.com/method-commons/raci-app" target="_blank" rel="noopener"><b>raci-app</b><span>Quellcode der App</span></a>
           </div>
         </div>
       </article>
