@@ -8,5 +8,5 @@ Alle Inhalte sind KI-generiert (Vibe-Coding mit Claude Code).
 
 ## Neue Methode ergänzen
 
-1. In `index.html` einen Block `<article class="card project" id="…">` nach dem Muster der vorhandenen anlegen, einen Eintrag in der Navigation (`#navMenu`) ergänzen und die Zahl in der Überschrift „… Methoden, je eine Schulung und eine App“ anpassen.
+1. In `index.html` einen Block `<article class="card project" id="…">` nach dem Muster der vorhandenen anlegen, einen Eintrag in der Navigation (`#navMenu`) ergänzen (die Überschrift des Abschnitts enthält keine Zahl und bleibt unverändert).
 2. In die neue Schulungsseite den Verweis auf diese Übersicht einbauen: [`_bausteine/method-commons-link.html`](_bausteine/method-commons-link.html), Anleitung in [`_bausteine/README.md`](_bausteine/README.md).
