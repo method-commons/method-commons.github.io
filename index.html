@@ -186,6 +186,31 @@
   .note .icon { margin: 0; background: color-mix(in srgb, var(--orange) 18%, transparent); color: var(--orange); }
   @media (max-width: 560px) { .note { grid-template-columns: 1fr; } }
 
+
+  /* Externe Empfehlungen */
+  .ext-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; margin-top: 28px; padding: 0; list-style: none; }
+  .ext-card {
+    display: flex; flex-direction: column; gap: 10px; height: 100%;
+    padding: 20px; border-radius: var(--radius); text-decoration: none; color: var(--text);
+    background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow);
+    transition: border-color .15s, transform .1s;
+  }
+  a.ext-card:hover { border-color: var(--accent); transform: translateY(-1px); }
+  a.ext-card:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .ext-head { display: flex; align-items: center; gap: 12px; }
+  .ext-mark {
+    width: 36px; height: 36px; border-radius: 9px; flex-shrink: 0;
+    display: inline-flex; align-items: center; justify-content: center;
+    background: var(--surface-2); color: var(--text); font: 700 1rem Fraunces, Georgia, serif;
+  }
+  .ext-name { font-weight: 600; line-height: 1.25; }
+  .ext-host { display: block; font-size: .8rem; color: var(--muted); font-weight: 400; }
+  .ext-desc { color: var(--muted); font-size: .92rem; margin: 0; flex: 1; }
+  .ext-meta { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  .ext-meta .tags { margin: 0; }
+  .ext-go { margin-left: auto; font-size: .85rem; font-weight: 600; color: var(--accent); white-space: nowrap; }
+  .ext-note { margin-top: 20px; font-size: .85rem; color: var(--muted); }
+
   footer.site { padding: 40px 0 56px; color: var(--muted); font-size: .85rem; border-top: 1px solid var(--line); }
   footer.site .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
 </style>
@@ -211,6 +236,7 @@
       <li><a href="#5-why">5 Why</a></li>
       <li><a href="#2-achsen-matrix">2-Achsen-Matrix</a></li>
       <li><a href="#raci-matrix">RACI-Matrix</a></li>
+      <li><a href="#empfehlungen">Empfehlungen</a></li>
       <li><a href="#ki">Entstehung</a></li>
     </ul>
     <button class="theme-toggle" id="themeToggle" aria-label="Hell/Dunkel umschalten" title="Hell/Dunkel umschalten"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg></button>
@@ -460,6 +486,30 @@
           </div>
         </div>
       </article>
+    </div>
+  </section>
+
+  <section id="empfehlungen">
+    <div class="wrap">
+      <span class="eyebrow">Empfehlungen</span>
+      <h2>Gute Quellen außerhalb von Method Commons</h2>
+      <p class="lead">Seiten und Werkzeuge anderer, die sich in der Praxis bewährt haben. Eine persönliche Auswahl, die nach und nach wächst.</p>
+      <ul class="ext-grid">
+        <li>
+          <a class="ext-card" href="https://retromat.org/" target="_blank" rel="noopener">
+            <span class="ext-head">
+              <span class="ext-mark" aria-hidden="true">R</span>
+              <span class="ext-name">Retromat<span class="ext-host">retromat.org</span></span>
+            </span>
+            <p class="ext-desc">Eine große Sammlung von Übungen für Retrospektiven, geordnet nach den fünf Phasen einer Retro. Lässt sich zu einem kompletten Ablauf zusammenwürfeln, auch auf Deutsch.</p>
+            <span class="ext-meta">
+              <ul class="tags"><li>Retrospektive</li><li>Agil</li></ul>
+              <span class="ext-go">Öffnen ↗</span>
+            </span>
+          </a>
+        </li>
+      </ul>
+      <p class="ext-note">Für die Inhalte externer Seiten sind ihre Betreiber verantwortlich. Es gibt keine Kooperation und keine Bezahlung, die Auswahl ist rein persönlich.</p>
     </div>
   </section>
 
